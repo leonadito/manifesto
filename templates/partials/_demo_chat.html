@@ -1,0 +1,31 @@
+<div class="chatSimulator" id="chat-container">
+  <div class="mapTitle">Conversa de Triagem IA (Simulada)</div>
+
+  <div class="chatMessages">
+    {% for msg in messages %}
+    <div class="chatMsg {% if msg.sender == 'agent' %}chatMsgAgent{% else %}chatMsgLead{% endif %}">
+      {{ msg.text }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05);padding-top:10px;">
+    <button class="btn btn-secondary"
+            hx-post="{% url 'htmx_products_chat_advance' %}"
+            hx-vals='{"chat_step": "{{ step }}"}'
+            hx-target="#chat-container"
+            hx-swap="outerHTML"
+            {% if step >= 5 %}disabled{% endif %}
+            style="padding:6px 12px;font-size:0.75rem;">
+      Avançar Conversa
+      <i data-lucide="arrow-right" style="width:12px;height:12px;vertical-align:middle;margin-left:4px;"></i>
+    </button>
+    <button class="btn btn-secondary"
+            hx-post="{% url 'htmx_products_chat_reset' %}"
+            hx-target="#chat-container"
+            hx-swap="outerHTML"
+            style="padding:6px 12px;font-size:0.75rem;margin-left:10px;">
+      Resetar
+    </button>
+  </div>
+</div>

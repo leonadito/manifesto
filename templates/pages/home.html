@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Agitare | Arquitetura de Software, IA &amp; Automação{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/home.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="home">
+
+  {# ── Hero ── #}
+  <div class="heroContainer">
+    <div class="heroVideoBg">
+      <video
+        id="hero-video"
+        src="{% static 'media/agitare_imagem-video_flow.mp4' %}"
+        muted
+        playsinline
+        preload="auto"
+      ></video>
+    </div>
+    <div class="heroBg"></div>
+    <div class="heroOverlay"></div>
+    <canvas class="heroParticles"></canvas>
+    <div class="heroContent">
+      <div id="gsap-steps">
+
+        {# Step 1 #}
+        <div class="gsap-step" style="text-align:center;">
+          <span class="badge" style="margin-bottom:16px">Solopreneur Engineering</span>
+          <h1 class="heroHeadline">
+            <span class="text-gradient-brand">Arquitetura de Sistemas, IA &amp; Escala</span>
+          </h1>
+          <p class="heroSubtitle">
+            Projetamos e executamos infraestruturas robustas de software e orquestração de Inteligência Artificial focadas em ROI tangível. Direto com o arquiteto sênior.
+          </p>
+          <div class="ctaGroup">
+            <a href="{% url 'contact' %}" class="btn btn-primary">
+              Agendar Diagnóstico <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+            </a>
+            <a href="#manifesto" class="btn btn-secondary">O Solopreneur Manifesto</a>
+          </div>
+        </div>
+
+        {# Step 2 #}
+        <div class="gsap-step" style="text-align:center;">
+          <span class="badge" style="margin-bottom:16px">Eficiência Técnica</span>
+          <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:20px;">
+            Entrando no Operational Core da <span class="text-gradient-brand">Agitare</span>
+          </h2>
+          <p style="max-width:650px;margin:0 auto;">
+            Nosso ecossistema combina design sofisticado e código limpo. Criamos ferramentas que aceleram processos corporativos estagnados e reduzem drasticamente custos de computação.
+          </p>
+        </div>
+
+        {# Step 3 #}
+        <div class="gsap-step" style="text-align:center;">
+          <span class="badge badge-emerald" style="margin-bottom:16px">Pronto para Produção</span>
+          <h2 style="font-size:clamp(2rem,5vw,3.5rem);margin-bottom:20px;">
+            Escalabilidade Sem Complexidade
+          </h2>
+          <p style="max-width:650px;margin:0 auto;margin-bottom:30px;">
+            Arquitetura modular projetada para transições fluidas. Nossas interfaces integram de forma nativa APIs e back-ends modernos, preparando seu produto para a escala de produção.
+          </p>
+          <a href="#pilares" class="btn btn-emerald">
+            Ver Nossos 5 Pilares <i data-lucide="arrow-right" style="width:18px;height:18px;"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  {# ── Manifesto ── #}
+  <section id="manifesto" class="section manifestoSection">
+    <div class="container">
+      <div class="manifestoCard glass-panel">
+        <span class="badge" style="margin-bottom:24px;display:inline-block;">O Manifesto</span>
+        <h2 class="manifestoHeading">O Solopreneur Model</h2>
+        <div class="manifestoText">
+          <p>
+            Diferente de agências tradicionais saturadas de camadas burocráticas e intermediários de contas,
+            a Agitare fundamenta-se na <strong>transformação técnica direta</strong>.
+          </p>
+          <p class="manifestoHighlight">
+            "Aqui, quem desenha a estratégia de arquitetura é o mesmo profissional sênior que digita o código
+            final e orquestra a nuvem."
+          </p>
+          <p>
+            Isso significa zero perda de contexto técnico, velocidade de execução até 2x maior, eliminação
+            total de ruídos de comunicação e foco absoluto na entrega de sistemas de alta performance.
+            Agilidade real não é uma métrica de relatório; é o core da nossa infraestrutura.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ── 5 Pilares ── #}
+  <section id="pilares" class="section pillarsSection">
+    <div class="container">
+      <div class="pillarsIntro">
+        <span class="badge" style="margin-bottom:16px">Áreas de Atuação</span>
+        <h2>Nossos 5 Pilares Técnicos</h2>
+        <p>Componentes integrados projetados para garantir excelência de engenharia e impacto financeiro direto em sua operação.</p>
+      </div>
+      <div class="pillarsGrid">
+        <div class="glass-panel pillarCard">
+          <div class="pillarIcon"><i data-lucide="layers" style="width:32px;height:32px;"></i></div>
+          <h3 class="pillarTitle">Arquitetura de Software</h3>
+          <p class="pillarDesc">Projetamos sistemas desacoplados, stateless, e com auto-scaling que garantem segurança e alta disponibilidade. Prontos para integração com qualquer stack moderna e escalável.</p>
+          <div class="pillarFooter">
+            <span class="pillarMetricLabel">Redução de TCO</span>
+            <span class="pillarMetricValue">-45% Custos Infra</span>
+          </div>
+        </div>
+        <div class="glass-panel pillarCard">
+          <div class="pillarIcon"><i data-lucide="cpu" style="width:32px;height:32px;"></i></div>
+          <h3 class="pillarTitle">Inteligência Artificial</h3>
+          <p class="pillarDesc">Desenvolvemos agentes autônomos, integrações de LLMs personalizadas e fluxos de RAG para otimização de suporte L1 e processamento de dados não estruturados.</p>
+          <div class="pillarFooter">
+            <span class="pillarMetricLabel">Redução de Latência</span>
+            <span class="pillarMetricValue">-80% Tempo Resposta</span>
+          </div>
+        </div>
+        <div class="glass-panel pillarCard">
+          <div class="pillarIcon"><i data-lucide="terminal" style="width:32px;height:32px;"></i></div>
+          <h3 class="pillarTitle">Automação de Processos</h3>
+          <p class="pillarDesc">Orquestramos APIs REST, webhooks e fluxos assíncronos que conectam ERPs, CRMs e bancos de dados legados, eliminando falhas operacionais e tarefas repetitivas.</p>
+          <div class="pillarFooter">
+            <span class="pillarMetricLabel">Eficiência Operacional</span>
+            <span class="pillarMetricValue">+3x Velocidade Processamento</span>
+          </div>
+        </div>
+        <div class="glass-panel pillarCard">
+          <div class="pillarIcon"><i data-lucide="bar-chart-2" style="width:32px;height:32px;"></i></div>
+          <h3 class="pillarTitle">Marketing de Conversão</h3>
+          <p class="pillarDesc">Projetamos funis dinâmicos alimentados por dados, qualificadores inteligentes de leads e fluxos de e-mail integrados focados em reduzir o CAC e aumentar o LTV.</p>
+          <div class="pillarFooter">
+            <span class="pillarMetricLabel">Custo de Aquisição</span>
+            <span class="pillarMetricValue">-30% Custo por Lead</span>
+          </div>
+        </div>
+        <div class="glass-panel pillarCard">
+          <div class="pillarIcon"><i data-lucide="message-square" style="width:32px;height:32px;"></i></div>
+          <h3 class="pillarTitle">Engenharia de Sites</h3>
+          <p class="pillarDesc">Criamos interfaces ultra rápidas, otimizadas para Core Web Vitals e SEO técnico, garantindo nota máxima no Lighthouse e alta taxa de conversão.</p>
+          <div class="pillarFooter">
+            <span class="pillarMetricLabel">Engajamento no Site</span>
+            <span class="pillarMetricValue">Lighthouse Score 98+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ── Portfólio Highlights ── #}
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="portfolioIntro">
+        <div>
+          <span class="badge" style="margin-bottom:16px">Projetos em Destaque</span>
+          <h2>Casos de Sucesso</h2>
+          <p style="max-width:600px;margin-top:10px;">Engenharia real aplicada em cenários práticos de alta demanda, entregando velocidade, autoridade e conversão.</p>
+        </div>
+        <a href="{% url 'portfolio' %}" class="btn btn-secondary">
+          Ver Todos os Projetos <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+        </a>
+      </div>
+      <div class="grid-2">
+        {% for case in cases %}
+        <div class="caseCard">
+          <div class="caseImagePlaceholder" {% if case.card_bg %}style="background:{{ case.card_bg }}"{% endif %}>
+            {% if case.logo %}
+            <img src="{% static case.logo %}" alt="{{ case.title }}" class="caseLogo">
+            {% else %}
+            <div class="caseLogoOverlay">{{ case.title }}</div>
+            {% endif %}
+          </div>
+          <div class="caseContent">
+            <span class="badge" style="margin-bottom:12px">{{ case.tag }}</span>
+            <h3 class="caseTitle">{{ case.title }}</h3>
+            <p class="caseText">{{ case.description }}</p>
+            <div class="tagGroup">
+              {% for tech in case.techs %}<code>{{ tech }}</code>{% endfor %}
+            </div>
+            <div class="caseResult">
+              <span class="caseResultLabel">Resultado Obtido:</span>
+              <span class="caseResultValue">{{ case.result }}</span>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div style="grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--text-muted);">
+          Cases em breve.
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# ── Depoimentos ── #}
+  <section class="section testimonialsSection">
+    <div class="container">
+      <div class="pillarsIntro">
+        <span class="badge" style="margin-bottom:16px">Prova Social</span>
+        <h2>Aprovado por Líderes</h2>
+        <p>Quem trabalha diretamente com o arquiteto sênior valoriza a clareza, a velocidade e o foco em resultados quantificáveis.</p>
+      </div>
+      <div class="grid-3">
+        <div class="glass-panel testimonialCard">
+          <p class="testimonialQuote">"A otimização realizada no TenisBrasil eliminou gargalos profundos de programação e reestruturou o consumo de recursos. O resultado foi um ganho drástico em performance e uma navegação infinitamente mais fluida para os nossos usuários."</p>
+          <div class="testimonialAuthor">
+            <div class="authorAvatar">TB</div>
+            <div>
+              <h4 class="authorName">José Nilton Dalcim</h4>
+              <span class="authorRole">Diretor Editorial, TenisBrasil</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-panel testimonialCard">
+          <p class="testimonialQuote">"Contratar o desenvolvimento completo do nosso site foi a melhor decisão. O projeto foi conduzido de ponta a ponta com extrema competência, desde a criação do design até a infraestrutura e suporte diário. Ganhamos uma presença digital à altura da nossa academia."</p>
+          <div class="testimonialAuthor">
+            <div class="authorAvatar">RTA</div>
+            <div>
+              <h4 class="authorName">Renan</h4>
+              <span class="authorRole">Fundador, Renan Tennis Academy</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-panel testimonialCard">
+          <p class="testimonialQuote">"A velocidade no desenvolvimento e o pronto atendimento nas atualizações dos nossos sites mudaram nosso patamar de entrega. Sem burocracia e com muita competência técnica, temos a segurança de que toda a infraestrutura digital dos nossos projetos está em mãos extremamente qualificadas."</p>
+          <div class="testimonialAuthor">
+            <div class="authorAvatar">DG</div>
+            <div>
+              <h4 class="authorName">Daniela Giuntini</h4>
+              <span class="authorRole">Diretora, DGW Comunicação</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# ── CTA Final ── #}
+  <section class="section ctaSection">
+    <div class="container">
+      <div class="ctaBox">
+        <span class="badge badge-emerald" style="margin-bottom:24px">Diagnóstico Gratuito</span>
+        <h2 class="ctaTitle">Pronto para otimizar sua infraestrutura?</h2>
+        <p class="ctaText">Receba um diagnóstico técnico detalhado sobre seus desafios de escala, integrações de IA e fluxos de automação de processos.</p>
+        <a href="{% url 'contact' %}" class="btn btn-primary" style="padding:16px 36px;font-size:1.05rem;">
+          Agendar Diagnóstico Gratuito <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/gsap-hero.js' %}"></script>
+{% endblock %}

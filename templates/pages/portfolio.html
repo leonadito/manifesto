@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Portfólio | Agitare{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="portfolioPage">
+  <div class="container">
+    <div class="intro">
+      <span class="badge">Nossos Cases</span>
+      <h1 style="margin-top:16px;">Estudos de Caso e Resultados Reais</h1>
+      <p style="max-width:750px; margin:16px auto 0;">
+        Navegue pelos nossos principais projetos. Conectamos soluções de arquitetura moderna e inteligência a dados reais de faturamento e estabilidade.
+      </p>
+    </div>
+
+    <div class="casesContainer">
+      {% for case in cases %}
+      <div class="glass-panel caseBlock">
+        <div class="caseHeader">
+          <div>
+            <span class="badge" style="margin-bottom:8px;display:inline-block;">{{ case.tag }}</span>
+            <h2 class="caseTitle">{{ case.title }}</h2>
+            {% if case.subtitle %}<p style="color:var(--text-secondary);font-size:1.05rem;font-weight:500;">{{ case.subtitle }}</p>{% endif %}
+            {% if case.url %}<a href="{{ case.url }}" target="_blank" rel="noopener noreferrer" class="caseUrl"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> {{ case.url }}</a>{% endif %}
+          </div>
+        </div>
+        <div class="caseGrid">
+          <div>
+            {% if case.context %}
+            <div class="textBlock">
+              <h4 class="sectionTitle">Contexto Geral</h4>
+              <p>{{ case.context }}</p>
+            </div>
+            {% endif %}
+            {% if case.problem %}
+            <div class="textBlock">
+              <h4 class="sectionTitle">Problema &amp; Desafio</h4>
+              <p>{{ case.problem }}</p>
+            </div>
+            {% endif %}
+            {% if case.solution %}
+            <div class="textBlock">
+              <h4 class="sectionTitle">Solução Técnica</h4>
+              <p>{{ case.solution }}</p>
+            </div>
+            {% endif %}
+            {% if case.techs %}
+            <h4 class="sectionTitle">Stack Tecnológica</h4>
+            <div class="stackList">
+              {% for tech in case.techs %}<code>{{ tech }}</code>{% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          <div style="display:flex;flex-direction:column;gap:30px;">
+            {% if case.diagram_svg %}
+            <div class="architectureBox">
+              <span class="archTitle">Diagrama Técnico Simplificado</span>
+              <svg viewBox="0 0 300 200" class="archDiagram">
+                {{ case.diagram_svg|safe }}
+              </svg>
+            </div>
+            {% endif %}
+            {% if case.metrics %}
+            <div class="resultsBox">
+              <h4 class="resultsTitle">ROI e Impacto Financeiro</h4>
+              <ul class="resultsList">
+                {% for metric in case.metrics %}
+                <li class="resultItem">
+                  <span>{{ metric.label }}</span>
+                  <span class="resultMetric">{{ metric.value }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div style="text-align:center;padding:80px 24px;color:var(--text-muted);">
+        Cases em breve.
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+[
+  {
+    "model": "core.casestudy",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "title": "TenisBrasil (UOL)",
+      "tag": "Arquitetura de Software",
+      "description": "Migração de arquitetura legada para infraestrutura resiliente e escalável com tratamento dinâmico de tráfego de picos de audiência.",
+      "techs": ["Varnish", "React", "DevOps", "AWS"],
+      "result": "Disponibilidade de 99.99%"
+    }
+  },
+  {
+    "model": "core.casestudy",
+    "pk": 2,
+    "fields": {
+      "order": 2,
+      "title": "Memorial Tênis Brasileiro",
+      "tag": "Engenharia de Sites",
+      "description": "Desenvolvimento de portal histórico interativo com otimização completa de carregamento de mídia e SEO de alta autoridade.",
+      "techs": ["Next.js", "PostgreSQL", "CDN Cache"],
+      "result": "Lighthouse Score 100/100"
+    }
+  },
+  {
+    "model": "core.casestudy",
+    "pk": 3,
+    "fields": {
+      "order": 3,
+      "title": "Beach Mania",
+      "tag": "Automação & IA",
+      "description": "Automação de fluxo de atendimento e captação integrada de clientes com agentes de qualificação de IA e funil de CRM ativo.",
+      "techs": ["OpenAI", "Node.js", "CRM Webhooks"],
+      "result": "Triagem autônoma de 92%"
+    }
+  },
+  {
+    "model": "core.casestudy",
+    "pk": 4,
+    "fields": {
+      "order": 4,
+      "title": "Imobiliária Litoral RS",
+      "tag": "Marketing de Conversão",
+      "description": "Funil geolocalizado de alta conversão para imóveis de alto padrão, reduzindo drasticamente o CAC com campanhas hiper-segmentadas.",
+      "techs": ["Python", "Google Maps API", "Meta Ads"],
+      "result": "-35% CAC Geral"
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Arquitetura Stateless com Django: Como escalar sem explodir a conta de nuvem",
+      "excerpt": "Entenda por que manter seus servidores de aplicação sem estado (stateless) e orquestrar cache na borda (CDN) reduz custos de computação e impede quedas durante picos de acessos repentinos.",
+      "category": "Arquitetura",
+      "read_time": 6,
+      "published_at": "2026-06-05",
+      "body": ""
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "Processamento Assíncrono com Celery e Redis em Aplicações Python",
+      "excerpt": "Como mover operações demoradas (despacho de e-mails, processamento de relatórios e webhooks) de requisições síncronas para segundo plano, aumentando a velocidade do site e do app.",
+      "category": "DevOps",
+      "read_time": 8,
+      "published_at": "2026-05-28",
+      "body": ""
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 3,
+    "fields": {
+      "title": "Inteligência Artificial Prática: Como configurar uma arquitetura RAG robusta",
+      "excerpt": "A engenharia por trás do uso de bancos de dados vetoriais (Pinecone/Chroma) e modelos de embeddings para alimentar assistentes de suporte com dados corporativos em tempo real.",
+      "category": "IA",
+      "read_time": 10,
+      "published_at": "2026-05-14",
+      "body": ""
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 4,
+    "fields": {
+      "title": "Marketing de Conversão Técnico: Otimizando pixels e Conversion APIs",
+      "excerpt": "Por que depender apenas do pixel de navegador está quebrando sua inteligência de anúncios. Aprenda a estruturar a Conversion API da Meta no servidor para feedback loops precisos.",
+      "category": "Conversao",
+      "read_time": 5,
+      "published_at": "2026-05-02",
+      "body": ""
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 5,
+    "fields": {
+      "title": "Core Web Vitals na Prática: Como levamos nossos sites a 100 no Lighthouse",
+      "excerpt": "Dicas práticas de compressão de assets, carregamento lazy-loading assíncrono, eliminação de código de bibliotecas pesadas e renderizações otimizadas de Canvas e animações.",
+      "category": "Arquitetura",
+      "read_time": 7,
+      "published_at": "2026-04-18",
+      "body": ""
+    }
+  },
+  {
+    "model": "core.blogpost",
+    "pk": 6,
+    "fields": {
+      "title": "Automações Seguras: Tratando instabilidades de APIs externas com filas",
+      "excerpt": "Como desenhar sistemas de automação de fluxo de leads e sincronia de CRMs que não perdem dados quando a API externa cai. Implementação de retentativas automáticas e filas de mensagens.",
+      "category": "DevOps",
+      "read_time": 6,
+      "published_at": "2026-04-10",
+      "body": ""
+    }
+  }
+]

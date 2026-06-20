@@ -1,0 +1,24 @@
+<div class="blogGrid">
+  {% for post in posts %}
+  <article class="postCard">
+    <div class="postMeta">
+      <span class="postCategory">{{ post.get_category_display }}</span>
+      <span class="postDate">{{ post.published_at|date:"d/m/Y" }}</span>
+    </div>
+    <h3 class="postTitle">{{ post.title }}</h3>
+    <p class="postExcerpt">{{ post.excerpt }}</p>
+    <div class="postFooter">
+      <span style="color:var(--text-muted);">{{ post.read_time }} min read</span>
+      <a href="#" class="readMore">
+        <i data-lucide="book-open" style="width:14px;height:14px;"></i>
+        Ler Artigo
+        <i data-lucide="arrow-right" style="width:12px;height:12px;"></i>
+      </a>
+    </div>
+  </article>
+  {% empty %}
+  <div style="grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--text-muted);">
+    Nenhum artigo encontrado nesta categoria.
+  </div>
+  {% endfor %}
+</div>

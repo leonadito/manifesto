@@ -1,0 +1,40 @@
+<div class="mapSimulator" id="map-simulator">
+  <div class="mapTitle">Módulo de Busca Geolocalizada</div>
+
+  <form hx-post="{% url 'htmx_products_map_search' %}"
+        hx-target="#map-simulator"
+        hx-swap="outerHTML"
+        style="display:flex;gap:10px;">
+    {% csrf_token %}
+    <input type="text" name="region"
+           style="background:var(--bg-primary);border:1px solid rgba(255,255,255,0.1);padding:8px 12px;border-radius:4px;color:#fff;flex-grow:1;font-size:0.85rem;"
+           value="{{ region|default:'Porto Alegre / Litoral RS' }}"
+           placeholder="Região de Busca">
+    <button type="submit" class="btn btn-primary" style="padding:8px 16px;font-size:0.85rem;white-space:nowrap;">
+      <i data-lucide="search" style="width:14px;height:14px;vertical-align:middle;margin-right:4px;"></i>Pesquisar
+    </button>
+  </form>
+
+  <div class="mapVisual">
+    {% if leads %}
+      <div class="pulsePoint" style="top:25%;left:40%;"></div>
+      <div class="pulsePoint" style="top:60%;left:70%;"></div>
+      <div class="pulsePoint" style="top:45%;left:20%;"></div>
+      <span style="font-size:0.75rem;color:var(--accent-cyan);font-family:var(--font-mono);">3 LOCALIDADES IDENTIFICADAS</span>
+    {% else %}
+      <span style="font-size:0.75rem;color:var(--text-muted);">Digite a região e clique em pesquisar.</span>
+    {% endif %}
+  </div>
+
+  {% if leads %}
+  <div class="leadList">
+    {% for lead in leads %}
+    <div class="leadRow">
+      <span>{{ lead.company }}</span>
+      <span style="color:var(--text-muted);">{{ lead.source }}</span>
+      <span class="leadStatus">{{ lead.status }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>

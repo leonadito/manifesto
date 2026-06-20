@@ -1,0 +1,72 @@
+{% load static %}<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="{% static 'media/agitare-favicon.svg' %}" />
+  <title>{% block title %}Agitare | Consultoria em Arquitetura de Software, IA e Automação{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}A Agitare é uma consultoria técnica sob o modelo Solopreneur. Arquitetura de software de alta performance, orquestração de IA e automação inteligente sem intermediários.{% endblock %}" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Design system -->
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/header.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/footer.css' %}" />
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body x-data>
+
+  {% include "partials/_header.html" %}
+
+  <main style="flex: 1; position: relative; z-index: 1;">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "partials/_footer.html" %}
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Alpine.js (mobile menu e micro-interações) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Header scroll behavior -->
+  <script>
+    (function () {
+      const header = document.querySelector('.header');
+      if (!header) return;
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+    })();
+  </script>
+
+  <!-- Lucide icon activation -->
+  <script>lucide.createIcons();</script>
+
+  <!-- HTMX: envia CSRF token em todos os POSTs -->
+  <script>
+    document.body.addEventListener('htmx:configRequest', function (evt) {
+      var m = document.cookie.match(/csrftoken=([^;]+)/);
+      if (m) evt.detail.headers['X-CSRFToken'] = m[1];
+    });
+  </script>
+
+  <!-- Neural network background canvas (all pages) -->
+  <script src="{% static 'js/neural-bg.js' %}"></script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

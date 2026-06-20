@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Diagnóstico Confirmado | Agitare{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="contactPage">
+  <div class="container">
+    <div class="glass-panel successDashboard">
+
+      <i data-lucide="check-circle" class="successIcon" style="width:64px;height:64px;display:block;margin:0 auto 24px;"></i>
+      <h1 class="text-gradient-brand">Diagnóstico Confirmado!</h1>
+      <p style="margin-top:16px;font-size:1.1rem;color:var(--text-secondary)">
+        Nossos buscadores e engenharia de software estão analisando a sua solicitação.
+      </p>
+
+      <div class="summaryBox">
+        <div class="summaryTitle">Resumo do seu Projeto</div>
+        <div class="summaryRow">
+          <span class="summaryLabel">Empresa:</span>
+          <span class="summaryVal">{{ data.company }}</span>
+        </div>
+        <div class="summaryRow">
+          <span class="summaryLabel">Contato:</span>
+          <span class="summaryVal">{{ data.name }}</span>
+        </div>
+        <div class="summaryRow">
+          <span class="summaryLabel">Faixa Faturamento:</span>
+          <span class="summaryVal">{{ data.revenue }}</span>
+        </div>
+        <div class="summaryRow">
+          <span class="summaryLabel">Pilar de Foco:</span>
+          <span class="summaryVal">{{ data.service }}</span>
+        </div>
+      </div>
+
+      <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:30px;line-height:1.6">
+        <i data-lucide="mail" style="width:16px;height:16px;vertical-align:middle;color:var(--accent-cyan)"></i>
+        &nbsp;Enviamos uma cópia do roteiro de análise técnica para: <strong>{{ data.email }}</strong>
+      </p>
+
+      <div style="background:rgba(16,185,129,.05);border:1px solid rgba(16,185,129,.2);padding:20px;border-radius:8px;margin-bottom:40px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;color:var(--accent-emerald);font-weight:600;font-size:.95rem;margin-bottom:8px;">
+          <i data-lucide="shield-check" style="width:18px;height:18px;"></i>
+          Modelo Solopreneur — Foco em Agilidade
+        </div>
+        <p style="font-size:.85rem;color:var(--text-secondary);margin:0;text-align:center;">
+          O próprio arquiteto principal responderá sua solicitação em até <strong>2 horas úteis</strong>
+          (segunda a sexta das 09h às 18h). Nenhum atendente ou robô fará a triagem final.
+        </p>
+      </div>
+
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+        <a href="{% url 'home' %}" class="btn btn-primary" style="padding:10px 20px;font-size:.9rem;">
+          <i data-lucide="terminal" style="width:16px;height:16px;"></i> Voltar ao Início
+        </a>
+        <a href="{% url 'services' %}" class="btn btn-secondary" style="padding:10px 20px;font-size:.9rem;">
+          <i data-lucide="cpu" style="width:16px;height:16px;"></i> Ver Tecnologias
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

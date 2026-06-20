@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Blog | Agitare{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/blog.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="blogPage">
+  <div class="container">
+
+    <div class="intro">
+      <span class="badge">Knowledge Hub</span>
+      <h1 style="margin-top:16px">Artigos Técnicos &amp; Engenharia</h1>
+      <p style="color:var(--text-secondary)">Compartilhando ideias práticas sobre infraestrutura resiliente, automação, IA de produção e growth marketing quantitativo.</p>
+    </div>
+
+    {# Filtros — Alpine gerencia estado ativo; HTMX busca o grid parcial #}
+    <div class="filterGroup" x-data="{ active: '{{ active_category }}' }">
+      <button
+        class="filterBtn"
+        :class="{ 'filterBtnActive': active === '' }"
+        @click="active = ''"
+        hx-get="{% url 'blog' %}"
+        hx-target="#blog-grid"
+        hx-swap="innerHTML"
+        hx-push-url="true">
+        Todos
+      </button>
+      {% for cat_value, cat_label in categories %}
+      <button
+        class="filterBtn"
+        :class="{ 'filterBtnActive': active === '{{ cat_value }}' }"
+        @click="active = '{{ cat_value }}'"
+        hx-get="{% url 'blog' %}?cat={{ cat_value }}"
+        hx-target="#blog-grid"
+        hx-swap="innerHTML"
+        hx-push-url="true">
+        {{ cat_label }}
+      </button>
+      {% endfor %}
+    </div>
+
+    {# Container alvo do HTMX swap #}
+    <div id="blog-grid">
+      {% include "partials/_blog_grid.html" %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

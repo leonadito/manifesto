@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contato | Agitare{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="contactPage" x-data="contactForm({{ initial_step }}, '{{ initial_revenue|escapejs }}', '{{ initial_service|escapejs }}')">
+  <div class="container">
+
+    <div class="intro">
+      <span class="badge">Triage &amp; Diagnóstico</span>
+      <h1 style="margin-top:16px">Agendar Diagnóstico Técnico</h1>
+      <p style="color:var(--text-secondary)">
+        Identifique gargalos técnicos, valide oportunidades de automação por IA e trace um roteiro de crescimento escalável. Sem intermediários.
+      </p>
+    </div>
+
+    <div class="glass-panel formCard">
+
+      {# Barra de progresso #}
+      <div class="progressContainer">
+        <div class="progressBar">
+          <div class="progressFill" :style="'width:' + ((step - 1) / 2 * 100) + '%'"></div>
+        </div>
+        <div class="stepIndicator">
+          <span :class="step >= 1 ? 'stepIndicatorActive' : ''">01. Cadastro</span>
+          <span :class="step >= 2 ? 'stepIndicatorActive' : ''">02. Perfil Comercial</span>
+          <span :class="step >= 3 ? 'stepIndicatorActive' : ''">03. Infraestrutura</span>
+        </div>
+      </div>
+
+      <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        {# Hidden inputs carregam os valores das option cards #}
+        <input type="hidden" name="revenue" :value="revenue">
+        <input type="hidden" name="service" :value="service">
+
+        {# ── Step 1: Cadastro ── #}
+        <div x-show="step === 1" x-transition.opacity.duration.200ms>
+          <div class="formGroup">
+            <label class="label">Qual seu nome completo?</label>
+            <input type="text" name="name" class="input"
+                   value="{{ form.name.value|default:'' }}"
+                   placeholder="Ex: Leonardo Silva" autocomplete="name">
+            {% if form.name.errors %}<span class="fieldError">{{ form.name.errors.0 }}</span>{% endif %}
+          </div>
+          <div class="formGroup">
+            <label class="label">Qual seu e-mail corporativo?</label>
+            <input type="email" name="email" class="input"
+                   value="{{ form.email.value|default:'' }}"
+                   placeholder="Ex: leonardo@suaempresa.com" autocomplete="email">
+            {% if form.email.errors %}<span class="fieldError">{{ form.email.errors.0 }}</span>{% endif %}
+          </div>
+          <div class="formGroup">
+            <label class="label">Qual o nome da sua empresa?</label>
+            <input type="text" name="company" class="input"
+                   value="{{ form.company.value|default:'' }}"
+                   placeholder="Ex: Construtora Litoral" autocomplete="organization">
+            {% if form.company.errors %}<span class="fieldError">{{ form.company.errors.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        {# ── Step 2: Perfil Comercial ── #}
+        <div x-show="step === 2" x-transition.opacity.duration.200ms>
+          <div class="formGroup">
+            <label class="label" style="margin-bottom:12px">Faixa de faturamento mensal estimada:</label>
+            <div class="optionGrid">
+              <div class="optionCard" :class="{ optionCardActive: revenue === 'Até R$ 50k/mês' }"
+                   @click="revenue = 'Até R$ 50k/mês'">
+                <div class="optionTitle">Até R$ 50k/mês</div>
+                <div class="optionDesc">Validação e escala inicial</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: revenue === 'R$ 50k a R$ 200k/mês' }"
+                   @click="revenue = 'R$ 50k a R$ 200k/mês'">
+                <div class="optionTitle">R$ 50k a R$ 200k/mês</div>
+                <div class="optionDesc">Otimização e eficiência operacional</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: revenue === 'Acima de R$ 200k/mês' }"
+                   @click="revenue = 'Acima de R$ 200k/mês'">
+                <div class="optionTitle">Acima de R$ 200k/mês</div>
+                <div class="optionDesc">Infraestrutura de grande volume</div>
+              </div>
+            </div>
+            {% if form.revenue.errors %}<span class="fieldError">{{ form.revenue.errors.0 }}</span>{% endif %}
+          </div>
+
+          <div class="formGroup">
+            <label class="label" style="margin-bottom:12px">Principal pilar técnico a priorizar:</label>
+            <div class="optionGrid">
+              <div class="optionCard" :class="{ optionCardActive: service === 'Arquitetura de Software' }"
+                   @click="service = 'Arquitetura de Software'">
+                <div class="optionTitle">Arquitetura de Software</div>
+                <div class="optionDesc">Sistemas resilientes e escaláveis</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: service === 'Inteligência Artificial' }"
+                   @click="service = 'Inteligência Artificial'">
+                <div class="optionTitle">Inteligência Artificial</div>
+                <div class="optionDesc">Agentes de IA e RAG customizados</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: service === 'Automação de Processos' }"
+                   @click="service = 'Automação de Processos'">
+                <div class="optionTitle">Automação de Processos</div>
+                <div class="optionDesc">Integrações e sincronizações</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: service === 'Marketing de Conversão' }"
+                   @click="service = 'Marketing de Conversão'">
+                <div class="optionTitle">Marketing de Conversão</div>
+                <div class="optionDesc">Growth, CAC reduzido e ROI</div>
+              </div>
+              <div class="optionCard" :class="{ optionCardActive: service === 'Engenharia de Sites' }"
+                   @click="service = 'Engenharia de Sites'">
+                <div class="optionTitle">Engenharia de Sites</div>
+                <div class="optionDesc">Lighthouse score 98+ &amp; Core Vitals</div>
+              </div>
+            </div>
+            {% if form.service.errors %}<span class="fieldError">{{ form.service.errors.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        {# ── Step 3: Infraestrutura ── #}
+        <div x-show="step === 3" x-transition.opacity.duration.200ms>
+          <div class="formGroup">
+            <label class="label">Ferramentas ou CRMs utilizados atualmente:</label>
+            <textarea name="tools" class="input" style="min-height:100px;resize:vertical;width:100%"
+                      placeholder="Ex: Hubspot, WordPress, ActiveCampaign, Planilhas Google...">{{ form.tools.value|default:'' }}</textarea>
+          </div>
+          <div class="formGroup">
+            <label class="label">Maior gargalo operacional ou técnico:</label>
+            <textarea name="challenge" class="input" style="min-height:120px;resize:vertical;width:100%"
+                      placeholder="Ex: Perda de leads no atendimento L1 / Lentidão no carregamento das páginas...">{{ form.challenge.value|default:'' }}</textarea>
+            {% if form.challenge.errors %}<span class="fieldError">{{ form.challenge.errors.0 }}</span>{% endif %}
+          </div>
+        </div>
+
+        {# Navegação entre steps #}
+        <div class="btnGroup" :style="step === 1 ? 'justify-content:flex-end' : ''">
+          <button type="button" class="btn btn-secondary" x-show="step > 1" @click="prevStep()">
+            <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Voltar
+          </button>
+          <button type="button" class="btn btn-primary" x-show="step < 3" @click="nextStep()">
+            Avançar <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+          </button>
+          <button type="submit" class="btn btn-emerald" x-show="step === 3">
+            Confirmar Envio <i data-lucide="check-circle" style="width:16px;height:16px;"></i>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function contactForm(initialStep, initialRevenue, initialService) {
+  return {
+    step: initialStep || 1,
+    revenue: initialRevenue || '',
+    service: initialService || '',
+    prevStep() {
+      this.step = Math.max(this.step - 1, 1);
+    },
+    nextStep() {
+      if (this.step === 1) {
+        var n = document.querySelector('[name=name]').value.trim();
+        var e = document.querySelector('[name=email]').value.trim();
+        var c = document.querySelector('[name=company]').value.trim();
+        if (!n) { alert('Informe seu nome completo.'); return; }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { alert('Informe um e-mail válido.'); return; }
+        if (!c) { alert('Informe o nome da empresa.'); return; }
+      }
+      if (this.step === 2) {
+        if (!this.revenue) { alert('Selecione uma faixa de faturamento.'); return; }
+        if (!this.service) { alert('Selecione o pilar técnico.'); return; }
+      }
+      this.step = Math.min(this.step + 1, 3);
+    }
+  };
+}
+</script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% load static %}
+{% static 'media/logos/agitare_logo-vetorizada.svg' as logo_src %}
+<header class="header" x-data="{ open: false }">
+  <div class="headerInner">
+
+    <a href="{% url 'home' %}" class="logoContainer">
+      <div class="logoImageGradient"
+           style="-webkit-mask-image:url('{{ logo_src }}');mask-image:url('{{ logo_src }}')"
+           role="img" aria-label="Agitare"></div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="nav">
+      <a href="{% url 'home' %}"     class="link {% if request.resolver_match.url_name == 'home' %}activeLink{% endif %}">Início</a>
+      <a href="{% url 'services' %}" class="link {% if request.resolver_match.url_name == 'services' %}activeLink{% endif %}">Serviços</a>
+      <a href="{% url 'products' %}" class="link {% if request.resolver_match.url_name == 'products' %}activeLink{% endif %}">Produtos</a>
+      <a href="{% url 'portfolio' %}" class="link {% if request.resolver_match.url_name == 'portfolio' %}activeLink{% endif %}">Portfólio</a>
+      <a href="{% url 'blog' %}"     class="link {% if request.resolver_match.url_name == 'blog' %}activeLink{% endif %}">Blog</a>
+      <a href="{% url 'contact' %}"  class="link {% if request.resolver_match.url_name == 'contact' %}activeLink{% endif %}">Contato</a>
+      <a href="{% url 'contact' %}" class="btn btn-primary" style="padding: 8px 16px; font-size: 0.85rem;">
+        Diagnóstico <i data-lucide="arrow-right" style="width:14px;height:14px;"></i>
+      </a>
+    </nav>
+
+    <!-- Mobile toggle (Alpine.js) -->
+    <button class="mobileMenuBtn" @click="open = !open" aria-label="Toggle menu">
+      <i x-show="!open" data-lucide="menu" style="width:24px;height:24px;"></i>
+      <i x-show="open"  data-lucide="x"    style="width:24px;height:24px;"></i>
+    </button>
+
+    <!-- Mobile Nav -->
+    <div class="mobileNav" :class="{ open: open }">
+      <a href="{% url 'home' %}"     class="mobileLink {% if request.resolver_match.url_name == 'home' %}mobileActiveLink{% endif %}" @click="open=false">Início</a>
+      <a href="{% url 'services' %}" class="mobileLink {% if request.resolver_match.url_name == 'services' %}mobileActiveLink{% endif %}" @click="open=false">Serviços</a>
+      <a href="{% url 'products' %}" class="mobileLink {% if request.resolver_match.url_name == 'products' %}mobileActiveLink{% endif %}" @click="open=false">Produtos</a>
+      <a href="{% url 'portfolio' %}" class="mobileLink {% if request.resolver_match.url_name == 'portfolio' %}mobileActiveLink{% endif %}" @click="open=false">Portfólio</a>
+      <a href="{% url 'blog' %}"     class="mobileLink {% if request.resolver_match.url_name == 'blog' %}mobileActiveLink{% endif %}" @click="open=false">Blog</a>
+      <a href="{% url 'contact' %}"  class="mobileLink {% if request.resolver_match.url_name == 'contact' %}mobileActiveLink{% endif %}" @click="open=false">Contato</a>
+      <a href="{% url 'contact' %}" class="btn btn-primary" style="width:100%; margin-top:20px; padding:12px;" @click="open=false">
+        Agendar Diagnóstico <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+      </a>
+    </div>
+
+  </div>
+</header>

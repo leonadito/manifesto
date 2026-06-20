@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Produtos | Agitare{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{% static 'css/products.css' %}" />{% endblock %}
+
+{% block content %}
+<div class="productsPage">
+  <div class="container">
+
+    <div class="prodIntro">
+      <span class="badge">Nossos Produtos</span>
+      <h1 style="margin-top:16px">MetaLeads</h1>
+      <p style="max-width:700px;margin:16px auto 0;color:var(--text-secondary)">
+        Infraestrutura de aquisição, triagem e conversão de leads proprietária, alimentada por Inteligência Artificial.
+        Projetada para atuar em múltiplos tenants com isolamento absoluto de dados.
+      </p>
+    </div>
+
+    <div class="grid-3 featuresGrid">
+      <div class="glass-panel featureCard">
+        <i data-lucide="compass" class="featureIcon" style="width:32px;height:32px;display:block;"></i>
+        <h3 class="featureTitle">Captação Geolocalizada</h3>
+        <p class="featureText">Buscadores autônomos que realizam varreduras éticas baseadas em filtros geográficos, identificando tomadores de decisão e empresas com alta intenção de compra.</p>
+      </div>
+      <div class="glass-panel featureCard">
+        <i data-lucide="message-square" class="featureIcon" style="width:32px;height:32px;display:block;"></i>
+        <h3 class="featureTitle">Qualificação por IA</h3>
+        <p class="featureText">Camada de NLP integrada que interage com o lead, realizando perguntas estratégicas de orçamento e qualificando antes de enviar ao CRM.</p>
+      </div>
+      <div class="glass-panel featureCard">
+        <i data-lucide="kanban" class="featureIcon" style="width:32px;height:32px;display:block;"></i>
+        <h3 class="featureTitle">Kanban e APIs</h3>
+        <p class="featureText">Painel interno completo para acompanhamento de leads, com webhooks automáticos para envio a CRMs externos (HubSpot, RD Station) e alertas instantâneos.</p>
+      </div>
+    </div>
+
+  </div>
+
+  {# ── Demo Section ── #}
+  <section class="demoSection">
+    <div class="container">
+      <div class="demoTitle">
+        <span class="badge badge-emerald">Demonstração Interativa</span>
+        <h2 style="margin-top:16px">Experimente a Engine MetaLeads</h2>
+        <p style="color:var(--text-secondary);margin-top:8px;">Navegue pelas abas abaixo para simular as principais etapas do sistema operando em tempo real.</p>
+      </div>
+
+      <div class="demoGrid" x-data="{tab:'MAP'}">
+
+        {# Sidebar de abas #}
+        <div class="demoSidebar">
+          <div class="glass-panel demoTab"
+               :class="{demoTabActive: tab === 'MAP'}"
+               @click="tab = 'MAP'"
+               hx-get="{% url 'htmx_products_map' %}"
+               hx-target="#demo-panel"
+               hx-swap="innerHTML">
+            <h3 class="demoTabTitle">1. Captação Inteligente</h3>
+            <p class="demoTabDesc">Pesquise empresas e tomadores de decisão em regiões geográficas específicas usando APIs integradas.</p>
+          </div>
+
+          <div class="glass-panel demoTab"
+               :class="{demoTabActive: tab === 'CHAT'}"
+               @click="tab = 'CHAT'"
+               hx-get="{% url 'htmx_products_chat' %}"
+               hx-target="#demo-panel"
+               hx-swap="innerHTML">
+            <h3 class="demoTabTitle">2. Qualificação por IA</h3>
+            <p class="demoTabDesc">Veja como a IA interage de forma conversacional e classifica a intenção de compra e faturamento do lead.</p>
+          </div>
+
+          <div class="glass-panel demoTab"
+               :class="{demoTabActive: tab === 'KANBAN'}"
+               @click="tab = 'KANBAN'"
+               hx-get="{% url 'htmx_products_kanban' %}"
+               hx-target="#demo-panel"
+               hx-swap="innerHTML">
+            <h3 class="demoTabTitle">3. Distribuição &amp; Kanban</h3>
+            <p class="demoTabDesc">Acompanhe o lead sendo distribuído automaticamente nas colunas e integrado ao seu banco de dados.</p>
+          </div>
+        </div>
+
+        {# Painel de conteúdo — carrega MAP por padrão #}
+        <div class="glass-panel demoContentPanel" id="demo-panel"
+             hx-get="{% url 'htmx_products_map' %}"
+             hx-trigger="load"
+             hx-target="this"
+             hx-swap="innerHTML">
+          <div style="text-align:center;color:var(--text-muted);font-family:var(--font-mono);font-size:0.8rem;">Carregando demo...</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {# ── Tech Section ── #}
+  <section class="section techSection">
+    <div class="container">
+      <div class="techTitle">
+        <span class="badge">Arquitetura SaaS-Ready</span>
+        <h2 style="margin-top:16px">Especificações de Escala</h2>
+        <p style="color:var(--text-secondary);margin-top:8px;">O MetaLeads foi desenhado para atuar sob rigorosos padrões de segurança e isolamento de banco de dados.</p>
+      </div>
+      <div class="grid-3">
+        <div class="glass-panel" style="padding:30px">
+          <i data-lucide="server" style="color:var(--accent-cyan);margin-bottom:15px;width:28px;height:28px;display:block;"></i>
+          <h4 style="margin-bottom:10px">Isolamento Multi-tenant</h4>
+          <p style="font-size:0.88rem;color:var(--text-secondary)">Cada cliente opera em um tenant isolado com chaves criptográficas específicas. Segurança absoluta contra vazamento de informações entre concorrência.</p>
+        </div>
+        <div class="glass-panel" style="padding:30px">
+          <i data-lucide="key" style="color:var(--accent-cyan);margin-bottom:15px;width:28px;height:28px;display:block;"></i>
+          <h4 style="margin-bottom:10px">Autenticação Tokenizada</h4>
+          <p style="font-size:0.88rem;color:var(--text-secondary)">Acesso a APIs via JWT com expiração controlada e escopos de permissão limitados, pronto para acoplar em qualquer back-end.</p>
+        </div>
+        <div class="glass-panel" style="padding:30px">
+          <i data-lucide="shield-check" style="color:var(--accent-cyan);margin-bottom:15px;width:28px;height:28px;display:block;"></i>
+          <h4 style="margin-bottom:10px">Scraping Ético</h4>
+          <p style="font-size:0.88rem;color:var(--text-secondary)">Varreduras que respeitam as diretrizes de termos de uso de plataformas de buscas (robots.txt), estruturando bases de leads sem infringir legislações.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.body.addEventListener('htmx:afterSettle', function () {
+  if (typeof lucide !== 'undefined') lucide.createIcons();
+});
+</script>
+{% endblock %}

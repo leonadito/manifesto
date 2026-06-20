@@ -1,0 +1,65 @@
+{% load static %}
+<footer class="footer">
+  <div class="container">
+    <div class="grid" style="display:grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap:48px; margin-bottom:60px;">
+
+      <!-- Brand -->
+      <div class="brandColumn">
+        <div class="logoArea">
+          <img src="{% static 'media/logos/agitare_logo-vetorizada.svg' %}" alt="Agitare" class="logoImage" />
+        </div>
+        <p class="description">
+          Consultoria em arquitetura de sistemas de alta performance, orquestração de Inteligência Artificial e automações focadas em ROI mensurável. Operando sob o modelo Solopreneur para entrega direta e sem ruídos.
+        </p>
+      </div>
+
+      <!-- Navegação -->
+      <div>
+        <h4 class="heading">Navegação</h4>
+        <ul class="list">
+          <li><a href="{% url 'home' %}"      class="link">Início</a></li>
+          <li><a href="{% url 'services' %}"  class="link">Serviços</a></li>
+          <li><a href="{% url 'products' %}"  class="link">Produtos (MetaLeads)</a></li>
+          <li><a href="{% url 'portfolio' %}" class="link">Portfólio</a></li>
+          <li><a href="{% url 'blog' %}"      class="link">Blog</a></li>
+        </ul>
+      </div>
+
+      <!-- Pilares -->
+      <div>
+        <h4 class="heading">Pilares</h4>
+        <ul class="list">
+          <li><a href="{% url 'services' %}" class="link">Arquitetura de Software</a></li>
+          <li><a href="{% url 'services' %}" class="link">Orquestração de IA</a></li>
+          <li><a href="{% url 'services' %}" class="link">Automação de Processos</a></li>
+          <li><a href="{% url 'services' %}" class="link">Marketing de Conversão</a></li>
+          <li><a href="{% url 'services' %}" class="link">Engenharia de Sites</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div>
+        <h4 class="heading">Contato &amp; Tech</h4>
+        <div class="contactInfo">
+          <div class="contactItem">
+            <i data-lucide="mail" style="width:16px;height:16px;color:var(--brand-pink);margin-top:4px;"></i>
+            <span>contato@agitare.com.br</span>
+          </div>
+          <div class="contactItem">
+            <i data-lucide="map-pin" style="width:16px;height:16px;color:var(--brand-pink);margin-top:4px;"></i>
+            <span>Litoral Norte, RS - Brasil</span>
+          </div>
+          <div class="contactItem">
+            <i data-lucide="shield" style="width:16px;height:16px;color:var(--brand-pink);margin-top:4px;"></i>
+            <span>One Person Business</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bottom">
+      <div>&copy; {% now "Y" %} Agitare. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>

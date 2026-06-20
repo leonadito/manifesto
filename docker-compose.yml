@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    env_file: .env
+    volumes:
+      - /var/www/agitare/db_data:/app/db_data
+      - /var/www/agitare/staticfiles:/app/staticfiles
+    ports:
+      - "127.0.0.1:8001:8000"
+    restart: unless-stopped

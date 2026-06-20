@@ -1,0 +1,35 @@
+<div id="kanban-container"
+     hx-get="{% url 'htmx_products_kanban' %}"
+     hx-trigger="every 2s"
+     hx-vals='{"stage": "{{ next_stage }}"}'
+     hx-target="this"
+     hx-swap="outerHTML">
+  <div class="mapTitle" style="margin-bottom:15px;">Distribuição em Tempo Real</div>
+  <div class="kanbanSimulator">
+    <div class="kanbanCol">
+      <div class="kanbanColTitle">Capturado</div>
+      {% if stage == 0 %}
+        <div class="kanbanCard">Imóveis Prime</div>
+      {% endif %}
+    </div>
+    <div class="kanbanCol">
+      <div class="kanbanColTitle">Qualificado IA</div>
+      {% if stage == 1 %}
+        <div class="kanbanCard" style="border-color:var(--accent-emerald);">Imóveis Prime</div>
+      {% endif %}
+    </div>
+    <div class="kanbanCol">
+      <div class="kanbanColTitle">Reunião</div>
+      {% if stage == 2 or stage == 3 %}
+        <div class="kanbanCard" style="border-color:var(--accent-cyan);background:rgba(0,240,255,0.05);">Imóveis Prime</div>
+      {% endif %}
+    </div>
+  </div>
+  <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:20px;text-align:center;min-height:1.4em;">
+    {% if stage == 0 %}Lead capturado na região do Litoral RS...
+    {% elif stage == 1 %}IA analisou e classificou como Lead Qualificado (Faturamento R$ 150k+)...
+    {% elif stage == 2 %}Lead confirmou agendamento. Dados enviados ao CRM via Webhook.
+    {% elif stage == 3 %}Aguardando próxima sincronização...
+    {% endif %}
+  </div>
+</div>
