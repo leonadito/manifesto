@@ -7,6 +7,21 @@
   <title>{% block title %}Agitare | Consultoria em Arquitetura de Software, IA e Automação{% endblock %}</title>
   <meta name="description" content="{% block meta_description %}A Agitare é uma consultoria técnica sob o modelo Solopreneur. Arquitetura de software de alta performance, orquestração de IA e automação inteligente sem intermediários.{% endblock %}" />
 
+  <!-- Open Graph / WhatsApp / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Agitare" />
+  <meta property="og:url" content="https://www.agitare.com.br{{ request.path }}" />
+  <meta property="og:title" content="{% block og_title %}Agitare | Arquitetura de Software, IA & Automação{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}Consultoria técnica Solopreneur em arquitetura de software de alta performance, orquestração de IA e automação com ROI mensurável.{% endblock %}" />
+  <meta property="og:image" content="https://www.agitare.com.br{% static 'media/logos/agitare-logo.png' %}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://www.agitare.com.br{% static 'media/logos/agitare-logo.png' %}" />
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
