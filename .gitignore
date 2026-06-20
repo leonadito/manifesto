@@ -7,3 +7,5 @@ db_data/
 staticfiles/
 .env
 *.log
+CLAUDE.md
+DOCUMENTACAO.md
