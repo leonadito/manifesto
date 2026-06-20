@@ -42,6 +42,18 @@
     gap: 16px;
     align-items: flex-start;
   }
+
+  .caseBlock {
+    padding: 20px;
+  }
+
+  .casesContainer {
+    gap: 40px;
+  }
+
+  .caseTitle {
+    font-size: 1.5rem;
+  }
 }
 
 .caseTitle {
