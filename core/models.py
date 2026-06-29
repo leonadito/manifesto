@@ -81,6 +81,7 @@ class Lead(models.Model):
 class ContactSubmission(models.Model):
     name = models.CharField(max_length=120)
     email = models.EmailField()
+    whatsapp = models.CharField(max_length=20, blank=True, verbose_name='WhatsApp')
     company = models.CharField(max_length=120, blank=True)
     revenue_range = models.CharField(max_length=80, blank=True)
     service = models.CharField(max_length=80, blank=True)

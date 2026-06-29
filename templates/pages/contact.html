@@ -45,8 +45,15 @@
             {% if form.name.errors %}<span class="fieldError">{{ form.name.errors.0 }}</span>{% endif %}
           </div>
           <div class="formGroup">
+            <label class="label">Qual seu WhatsApp?</label>
+            <input type="tel" name="whatsapp" id="id_whatsapp" class="input"
+                   value="{{ form.whatsapp.value|default:'' }}"
+                   placeholder="(xx) xxxxx-xxxx" autocomplete="tel" maxlength="15">
+            {% if form.whatsapp.errors %}<span class="fieldError">{{ form.whatsapp.errors.0 }}</span>{% endif %}
+          </div>
+          <div class="formGroup">
             <label class="label">Qual seu e-mail corporativo?</label>
-            <input type="email" name="email" class="input"
+            <input type="email" name="email" id="id_email" class="input"
                    value="{{ form.email.value|default:'' }}"
                    placeholder="Ex: leonardo@suaempresa.com" autocomplete="email">
             {% if form.email.errors %}<span class="fieldError">{{ form.email.errors.0 }}</span>{% endif %}
@@ -154,6 +161,30 @@
 
 {% block extra_js %}
 <script>
+// WhatsApp mask: (xx) xxxxx-xxxx
+(function () {
+  var input = document.getElementById('id_whatsapp');
+  if (!input) return;
+  input.addEventListener('input', function () {
+    var digits = this.value.replace(/\D/g, '').slice(0, 11);
+    var v = digits;
+    if (digits.length > 2)  v = '(' + digits.slice(0,2) + ') ' + digits.slice(2);
+    if (digits.length > 7)  v = '(' + digits.slice(0,2) + ') ' + digits.slice(2,7) + '-' + digits.slice(7);
+    this.value = v;
+  });
+})();
+
+// E-mail: feedback visual ao sair do campo
+(function () {
+  var input = document.getElementById('id_email');
+  if (!input) return;
+  input.addEventListener('blur', function () {
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value.trim());
+    this.style.borderColor = this.value && !valid ? 'var(--brand-pink)' : '';
+  });
+  input.addEventListener('focus', function () { this.style.borderColor = ''; });
+})();
+
 function contactForm(initialStep, initialRevenue, initialService) {
   return {
     step: initialStep || 1,
@@ -165,9 +196,11 @@ function contactForm(initialStep, initialRevenue, initialService) {
     nextStep() {
       if (this.step === 1) {
         var n = document.querySelector('[name=name]').value.trim();
+        var w = document.querySelector('[name=whatsapp]').value.replace(/\D/g, '');
         var e = document.querySelector('[name=email]').value.trim();
         var c = document.querySelector('[name=company]').value.trim();
         if (!n) { alert('Informe seu nome completo.'); return; }
+        if (w.length < 10 || w.length > 11) { alert('Informe um WhatsApp válido com DDD, ex: (51) 99999-9999.'); return; }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { alert('Informe um e-mail válido.'); return; }
         if (!c) { alert('Informe o nome da empresa.'); return; }
       }

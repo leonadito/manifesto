@@ -45,6 +45,7 @@ def contact(request):
             ContactSubmission.objects.create(
                 name=d['name'],
                 email=d['email'],
+                whatsapp=d.get('whatsapp', ''),
                 company=d['company'],
                 revenue_range=d['revenue'],
                 service=d['service'],
