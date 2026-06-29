@@ -65,6 +65,13 @@
                    placeholder="Ex: Construtora Litoral" autocomplete="organization">
             {% if form.company.errors %}<span class="fieldError">{{ form.company.errors.0 }}</span>{% endif %}
           </div>
+          <div class="formGroup">
+            <label class="label">Qual o site da sua empresa? <span style="color:var(--text-secondary);font-weight:400">(opcional)</span></label>
+            <input type="url" name="website" class="input"
+                   value="{{ form.website.value|default:'' }}"
+                   placeholder="Ex: https://suaempresa.com.br" autocomplete="url">
+            {% if form.website.errors %}<span class="fieldError">{{ form.website.errors.0 }}</span>{% endif %}
+          </div>
         </div>
 
         {# ── Step 2: Perfil Comercial ── #}

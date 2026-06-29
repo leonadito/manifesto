@@ -47,6 +47,7 @@ def contact(request):
                 email=d['email'],
                 whatsapp=d.get('whatsapp', ''),
                 company=d['company'],
+                website=d.get('website', ''),
                 revenue_range=d['revenue'],
                 service=d['service'],
                 tools=d.get('tools', ''),

@@ -29,6 +29,7 @@ class ContactForm(forms.Form):
     email = forms.EmailField()
     whatsapp = forms.CharField(max_length=20, validators=[_validate_br_phone])
     company = forms.CharField(max_length=120)
+    website = forms.URLField(required=False, max_length=200)
     revenue = forms.ChoiceField(choices=REVENUE_CHOICES)
     service = forms.ChoiceField(choices=SERVICE_CHOICES)
     tools = forms.CharField(required=False, max_length=500, widget=forms.Textarea)

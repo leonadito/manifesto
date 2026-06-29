@@ -83,6 +83,7 @@ class ContactSubmission(models.Model):
     email = models.EmailField()
     whatsapp = models.CharField(max_length=20, blank=True, verbose_name='WhatsApp')
     company = models.CharField(max_length=120, blank=True)
+    website = models.URLField(blank=True, verbose_name='Site da empresa')
     revenue_range = models.CharField(max_length=80, blank=True)
     service = models.CharField(max_length=80, blank=True)
     tools = models.CharField(max_length=200, blank=True)
